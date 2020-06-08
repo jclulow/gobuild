@@ -11,6 +11,11 @@ if [[ ! -f VERSION ]]; then
 	exit 1
 fi
 
+if [[ -z "$GOOS" || -z "$GOARCH" ]]; then
+	printf 'define GOOS and GOARCH in the environment\n' >&2
+	exit 1
+fi
+
 set -o xtrace
 
 #
@@ -26,4 +31,4 @@ rm -rf "pkg/obj"
 #
 # Remove the libraries used to build the toolchain commands.
 #
-rm -rf "pkg/solaris_amd64/cmd"
+rm -rf "pkg/${GOOS}_${GOARCH}/cmd"

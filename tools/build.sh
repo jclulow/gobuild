@@ -111,7 +111,7 @@ if ! cd "$work/src"; then
 fi
 temptar="$dir/output/.tmp.$$"
 rm -f "$temptar"
-if ! gtar -c -f "$temptar" --numeric-owner --owner=0 --group=0 *; then
+if ! gtar -c -z -f "$temptar" --numeric-owner --owner=0 --group=0 *; then
 	fatal "could not create archive"
 fi
 if ! mv "$temptar" "$finaltar"; then
